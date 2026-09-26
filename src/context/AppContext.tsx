@@ -24,6 +24,7 @@ import {
   INITIAL_MAINTENANCE_REQUESTS,
   STATE_COMPLIANCE_CONFIGS,
 } from '../data/mockData';
+import { BUNDLED_PROPERTY_IMAGES } from '../assets/propertyImages';
 
 export type NavTab =
   | 'dashboard'
@@ -380,14 +381,6 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   const addNewProperty = (propData: Partial<Property>) => {
-    const defaultImages = [
-      '/src/assets/images/property_highland_court_1790358750969.jpg',
-      '/src/assets/images/property_oakridge_commons_1790358763378.jpg',
-      '/src/assets/images/property_westview_lofts_1790405319014.jpg',
-      '/src/assets/images/property_south_congress_1790405333722.jpg',
-      '/src/assets/images/property_canyon_creek_1790405346787.jpg',
-      '/src/assets/images/property_travis_plaza_1790405359061.jpg',
-    ];
     const newProp: Property = {
       id: `prop-${Date.now()}`,
       name: propData.name || 'New Rental Property',
@@ -398,7 +391,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       totalUnits: propData.totalUnits || 20,
       occupiedUnits: propData.occupiedUnits || 18,
       monthlyExpectedRent: propData.monthlyExpectedRent || 32000,
-      image: propData.image || defaultImages[properties.length % defaultImages.length],
+      image: propData.image || BUNDLED_PROPERTY_IMAGES[properties.length % BUNDLED_PROPERTY_IMAGES.length],
       propertyType: propData.propertyType || 'Multifamily Mid-Rise',
       yearBuilt: propData.yearBuilt || 2022,
     };

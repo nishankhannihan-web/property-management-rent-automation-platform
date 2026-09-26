@@ -10,6 +10,7 @@ import {
   MaintenanceRequest,
   StateComplianceConfig,
 } from '../types';
+import { PROPERTY_IMAGES_MAP } from '../assets/propertyImages';
 
 export const INITIAL_PROPERTIES: Property[] = [
   {
@@ -22,7 +23,7 @@ export const INITIAL_PROPERTIES: Property[] = [
     totalUnits: 48,
     occupiedUnits: 46,
     monthlyExpectedRent: 79200,
-    image: '/src/assets/images/property_highland_court_1790358750969.jpg',
+    image: PROPERTY_IMAGES_MAP['prop-1'],
     propertyType: 'Multifamily Mid-Rise',
     yearBuilt: 2018,
   },
@@ -36,7 +37,7 @@ export const INITIAL_PROPERTIES: Property[] = [
     totalUnits: 32,
     occupiedUnits: 31,
     monthlyExpectedRent: 67200,
-    image: '/src/assets/images/property_oakridge_commons_1790358763378.jpg',
+    image: PROPERTY_IMAGES_MAP['prop-2'],
     propertyType: 'Townhome Community',
     yearBuilt: 2020,
   },
@@ -50,7 +51,7 @@ export const INITIAL_PROPERTIES: Property[] = [
     totalUnits: 26,
     occupiedUnits: 25,
     monthlyExpectedRent: 41600,
-    image: '/src/assets/images/property_westview_lofts_1790405319014.jpg',
+    image: PROPERTY_IMAGES_MAP['prop-3'],
     propertyType: 'Urban Lofts',
     yearBuilt: 2016,
   },
@@ -64,7 +65,7 @@ export const INITIAL_PROPERTIES: Property[] = [
     totalUnits: 20,
     occupiedUnits: 19,
     monthlyExpectedRent: 27000,
-    image: '/src/assets/images/property_south_congress_1790405333722.jpg',
+    image: PROPERTY_IMAGES_MAP['prop-4'],
     propertyType: 'Garden Apartments',
     yearBuilt: 2014,
   },
@@ -78,7 +79,7 @@ export const INITIAL_PROPERTIES: Property[] = [
     totalUnits: 16,
     occupiedUnits: 15,
     monthlyExpectedRent: 38400,
-    image: '/src/assets/images/property_canyon_creek_1790405346787.jpg',
+    image: PROPERTY_IMAGES_MAP['prop-5'],
     propertyType: 'Townhome Community',
     yearBuilt: 2021,
   },
@@ -92,7 +93,7 @@ export const INITIAL_PROPERTIES: Property[] = [
     totalUnits: 12,
     occupiedUnits: 11,
     monthlyExpectedRent: 21400,
-    image: '/src/assets/images/property_travis_plaza_1790405359061.jpg',
+    image: PROPERTY_IMAGES_MAP['prop-6'],
     propertyType: 'Multifamily Mid-Rise',
     yearBuilt: 2019,
   },

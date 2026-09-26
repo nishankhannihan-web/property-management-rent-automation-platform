@@ -14,34 +14,44 @@ import {
   X,
 } from 'lucide-react';
 import { OnboardingModal } from './OnboardingModal';
-
-export const BUNDLED_PROPERTY_IMAGES = [
-  '/src/assets/images/property_highland_court_1790358750969.jpg',
-  '/src/assets/images/property_oakridge_commons_1790358763378.jpg',
-  '/src/assets/images/property_westview_lofts_1790405319014.jpg',
-  '/src/assets/images/property_south_congress_1790405333722.jpg',
-  '/src/assets/images/property_canyon_creek_1790405346787.jpg',
-  '/src/assets/images/property_travis_plaza_1790405359061.jpg',
-];
+import {
+  BUNDLED_PROPERTY_IMAGES,
+  PUBLIC_FALLBACK_IMAGES,
+} from '../assets/propertyImages';
 
 interface PropertyCardImageProps {
   prop: Property;
 }
 
 const PropertyCardImage: React.FC<PropertyCardImageProps> = ({ prop }) => {
+  const publicFallback = PUBLIC_FALLBACK_IMAGES[prop.id];
+  const initialSrc = prop.image || publicFallback;
+  const [currentSrc, setCurrentSrc] = useState<string | undefined>(initialSrc);
+  const [hasTriedFallback, setHasTriedFallback] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  // If valid image provided and no error loading, render eagerly
-  if (prop.image && !hasError) {
+  const handleError = () => {
+    // If the imported URL failed and we haven't tried the public static URL, try it
+    if (!hasTriedFallback && publicFallback && currentSrc !== publicFallback) {
+      setHasTriedFallback(true);
+      setCurrentSrc(publicFallback);
+    } else {
+      // Both failed, show the clean architectural card
+      setHasError(true);
+    }
+  };
+
+  // If valid image provided and no final error, render eagerly
+  if (currentSrc && !hasError) {
     return (
       <div className="h-44 w-full overflow-hidden bg-stone-100 dark:bg-zinc-800 relative group">
         <img
-          src={prop.image}
+          src={currentSrc}
           alt={prop.name}
           referrerPolicy="no-referrer"
           loading="eager"
           decoding="async"
-          onError={() => setHasError(true)}
+          onError={handleError}
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
         />
         <div className="absolute top-3 right-3 rounded bg-stone-900/80 px-2 py-0.5 text-[10px] font-mono text-white backdrop-blur-xs">
